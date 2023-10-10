@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 url = 'https://insights.blackcoffer.com/rise-of-telemedicine-and-its-impact-on-livelihood-by-2040-3-2/'
 
 response = requests.get(url)
-
 htmlContent = response.content
 soup = BeautifulSoup(htmlContent, 'html.parser')
 
