@@ -1,6 +1,6 @@
 import csv
 
-fileName='input.csv'
+fileName= 'WebScraping/Input.csv'
 with open(fileName, mode ='r')as file:
     data=[]
     csvFile = csv.reader(file)
