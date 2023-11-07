@@ -153,10 +153,12 @@ def analyse_data(elm):
             personal_pronouns(text),
             average_word_length(text)
             ]
+    print(outRow)
     return outRow
 
 def main():
     data=readCSV('Input.csv')
+    executer=ThreadPoolExecutor(12)
     outputData=[]
     fieldRow=['urlId',
             'url',
@@ -176,12 +178,18 @@ def main():
 
     print(fieldRow)
     outputData.append(fieldRow)
+    futures=[]
     for elm in data:
-             outputData.append(analyse_data(elm))
+             #outputData.append(analyse_data(elm))
+             future=executer.submit(analyse_data,(elm))
+             futures.append(future)
+
+    executer.shutdown(wait=True)
+    for future in futures:
+        print(future.result())
+        outputData.append(future.result())
 
     writeToCsvFile(outputData, 'OutputDataStructure.csv')
-          
-
 
 if __name__=="__main__":
     main()

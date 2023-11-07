@@ -1,6 +1,7 @@
 import requests
 import csv
 from bs4 import BeautifulSoup
+from concurrent.futures import ThreadPoolExecutor
 
 count=0
 def getSoup(url):
@@ -38,10 +39,20 @@ def fetchDataAndWriteToFile(elm):
     path = getPath(urlId)
     print(path)
     writeToFile(body,path)
+    return {"result":f"{urlId} file created"}
 def main():
     data=readCSV('Input.csv')
+    executer=ThreadPoolExecutor(12)
+    futures=[]
     for elm in data:
-            fetchDataAndWriteToFile(elm)
+            #fetchDataAndWriteToFile(elm)
+            future=executer.submit(fetchDataAndWriteToFile,(elm))
+            futures.append(future)
+
+    executer.shutdown(wait=True)
+    for future in futures:
+        print(future.result())
+
     print("file Count "+str(count))
 
 if __name__=="__main__":
