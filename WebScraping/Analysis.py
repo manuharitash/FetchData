@@ -134,7 +134,7 @@ def writeToCsvFile(outputData,fileName):
 def analyse_data(elm):
     urlId=elm[0]
     url=elm[1]
-    fileName=urlId+'.txt'
+    fileName='OutputFiles/'+urlId+'.txt'
     text=readText(fileName)
     sentiment=sentimental_analysis(text)
     outRow=[urlId,
@@ -179,7 +179,7 @@ def main():
     for elm in data:
              outputData.append(analyse_data(elm))
 
-    writeToCsvFile(outputData, 'outputAnalysisFile.csv')
+    writeToCsvFile(outputData, 'OutputDataStructure.csv')
           
 
 
