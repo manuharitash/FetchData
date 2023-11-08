@@ -1,0 +1,16 @@
+I have divided whole task into 2 scripts:
+
+part 1 : FetchData.py
+
+it reads input file , fetches data from given url, saves text file in OutputFiles folder.
+
+Note: make sure to create a folder in same directory where script is being executed by name 'OutputFiles'
+
+part 2 : Analysis.py
+
+it reads input file , reads text file name from it , searches for that given text file in 'OutputFiles' folder
+and performs textual analysis on each given text files , writes all data 'OutputDataStructure.csv' file
+as asked in problem statement.
+
+
+I have leveraged multi threading using ThreadPoolExecutor to make my script work faster.
