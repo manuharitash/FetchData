@@ -127,9 +127,10 @@ def personal_pronouns(text):
 
 
 def writeToCsvFile(outputData,fileName):
-    with open(fileName, 'w') as csvfile:
+    with open(fileName, 'w', newline="") as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerows(outputData)
+        for row in outputData:
+            csvwriter.writerow(row)
 
 def analyse_data(elm):
     urlId=elm[0]
